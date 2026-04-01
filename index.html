@@ -5,7 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>StreamHub</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -14,16 +14,14 @@ body{
   font-family:'Inter',sans-serif;
   background:#141414;
   color:#fff;
-  overflow:hidden;
 }
 
 /* topo */
 .nav{
-  position:fixed;
-  top:0;
-  width:100%;
-  padding:20px 40px;
-  font-size:24px;
+  position:absolute;
+  top:20px;
+  left:30px;
+  font-size:26px;
   font-weight:600;
   color:#e50914;
 }
@@ -34,66 +32,5 @@ body{
   display:flex;
   justify-content:center;
   align-items:center;
-  background:linear-gradient(to top,#000,transparent),
-  url("https://i.imgur.com/8Km9tLL.jpg") center/cover;
-  transition:opacity .6s ease;
-}
-
-.card{
-  background:rgba(0,0,0,0.75);
-  padding:40px;
-  border-radius:8px;
-  width:340px;
-  text-align:center;
-  transition:.4s;
-}
-
-button{
-  width:100%;
-  padding:14px;
-  background:#e50914;
-  border:none;
-  color:#fff;
-  font-weight:600;
-  border-radius:4px;
-  cursor:pointer;
-}
-
-/* PROCESSO */
-#processo{
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  color:#00ffcc;
-  font-family:monospace;
-  padding:30px;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .5s;
-}
-
-/* overlay vermelho pulsante */
-#processo::before{
-  content:"";
-  position:absolute;
-  top:0;left:0;width:100%;height:100%;
-  background:rgba(255,0,0,0.08);
-  animation:pulse 1.5s infinite;
-}
-
-@keyframes pulse{
-  0%,100%{opacity:0.1;}
-  50%{opacity:0.3;}
-}
-
-/* logs */
-.log{
-  opacity:0;
-  transform:translateY(10px);
-  animation:fadeUp .4s forwards;
-}
-
-@keyframes fadeUp{
+  background:linear-gradient(to top,#000,rgba(0,0,0,0.6)),
+  url("https://images.unsplash.com/photo-152498
