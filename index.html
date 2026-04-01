@@ -1,162 +1,175 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>StreamHub | Ativar Assinatura</title>
-  
-  <link rel="preload" href="https://i.imgur.com/8Fk7C5c.jpg" as="image">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StreamHub | Premium</title>
 
-  <style>
-    /* Reset e Estilo Profissional */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { 
-      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
-      background: #000; 
-      color: #fff; 
-      height: 100vh; 
-      display: flex; 
-      align-items: center; 
-      justify-content: center;
-      overflow: hidden;
-    }
+<meta property="og:title" content="🎬 Acesso Premium Liberado">
+<meta property="og:description" content="Netflix, Prime Video e Disney+ grátis hoje...">
+<meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
 
-    /* Fundo com cara de Cinema/Streaming */
-    .bg-overlay {
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background: radial-gradient(circle, rgba(60,0,0,1) 0%, rgba(0,0,0,1) 70%);
-      z-index: -1;
-    }
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    .container {
-      text-align: center;
-      max-width: 450px;
-      padding: 40px 20px;
-      z-index: 1;
-    }
+body{
+  font-family: Arial;
+  background:#000;
+  color:#fff;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+}
 
-    .logo {
-      color: #e50914;
-      font-size: 42px;
-      font-weight: bold;
-      letter-spacing: -1px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
+/* Tela principal */
+.container{
+  text-align:center;
+  max-width:400px;
+}
 
-    h1 { font-size: 24px; margin-bottom: 15px; font-weight: 500; }
-    p { color: #a3a3a3; font-size: 16px; margin-bottom: 30px; line-height: 1.4; }
+.logo{
+  color:#e50914;
+  font-size:40px;
+  font-weight:bold;
+}
 
-    /* Botão Estilo Netflix */
-    .btn-netflix {
-      background-color: #e50914;
-      color: #fff;
-      border: none;
-      padding: 18px 45px;
-      font-size: 18px;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      width: 100%;
-      transition: background 0.2s;
-    }
-    .btn-netflix:hover { background-color: #b20710; }
+button{
+  background:#e50914;
+  border:none;
+  padding:15px;
+  width:100%;
+  margin-top:20px;
+  color:#fff;
+  font-size:18px;
+  border-radius:5px;
+  cursor:pointer;
+}
 
-    /* Tela de Pânico / Hacker */
-    #panic { 
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-      background: #000; z-index: 999; color: #00ff00; padding: 30px; 
-      font-family: 'Courier New', Courier, monospace; text-align: left; 
-    }
-    .blink-red { color: #ff0000; animation: blinker 0.15s infinite; font-weight: bold; font-size: 20px; }
-    @keyframes blinker { 50% { opacity: 0; } }
+/* Tela hacker */
+#hack{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  color:#0f0;
+  padding:20px;
+  font-family:monospace;
+}
 
-    /* Screamer Imagem Full */
-    #screamer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; }
-    #screamer img { width: 100%; height: 100%; object-fit: cover; }
+/* Screamer */
+#susto{
+  display:none;
+  position:fixed;
+  top:0;left:0;
+  width:100%;
+  height:100%;
+  background:#000;
+  z-index:9999;
+}
+#susto img{
+  width:100%;
+  height:100%;
+  object-fit:cover;
+}
 
-    /* Tela Final Branca */
-    #final { 
-      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
-      background: #fff; color: #000; z-index: 10001; flex-direction: column; 
-      justify-content: center; align-items: center; text-align: center; 
-    }
-  </style>
+/* Final */
+#final{
+  display:none;
+  position:fixed;
+  top:0;
+  width:100%;
+  height:100%;
+  background:#fff;
+  color:#000;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+}
+</style>
 </head>
+
 <body>
 
-  <div class="bg-overlay"></div>
+<div class="container" id="main">
+  <div class="logo">STREAMHUB</div>
+  <h2>Acesso Premium</h2>
+  <p>Você foi selecionado para acesso gratuito às plataformas:</p>
+  <p><b>Netflix • Prime • Disney+</b></p>
+  <button onclick="start()">ATIVAR ACESSO</button>
+</div>
 
-  <div id="main-ui" class="container">
-    <div class="logo">STREAMHUB</div>
-    <h1>Resgate seu Acesso Vitalício</h1>
-    <p>Você foi selecionado para o plano Early Access. Ative agora sua conta combo: <b>Netflix, Disney+, HBO & Prime.</b></p>
-    <button class="btn-netflix" onclick="iniciarProcesso()">ATIVAR AGORA</button>
-    <p style="font-size: 12px; margin-top: 20px; color: #555;">© 2026 StreamHub Global. Todos os direitos reservados.</p>
-  </div>
+<div id="hack">
+  <h2 style="color:red;">⚠️ INVASÃO DETECTADA</h2>
+  <p id="log"></p>
+</div>
 
-  <div id="panic">
-    <div class="blink-red">⚠️ SECURITY BREACH DETECTED</div>
-    <div style="margin-top: 20px; line-height: 1.8;">
-      <p>> Initializing remote override...</p>
-      <p>> Capturing device credentials... [OK]</p>
-      <p>> Exporting WhatsApp database... 64%</p>
-      <p>> Uploading local storage to cloud server...</p>
-      <br>
-      <p style="color: #fff; font-size: 22px;">FULL DISK WIPE: <span id="perc">0</span>%</p>
-    </div>
-  </div>
+<div id="susto">
+  <img src="https://i.imgur.com/8Fk7C5c.jpg">
+</div>
 
-  <div id="screamer">
-    <img src="https://i.imgur.com/8Fk7C5c.jpg">
-  </div>
+<div id="final">
+  <h1>😂 1º DE ABRIL</h1>
+  <p>Você caiu na pegadinha!</p>
+  <button onclick="location.reload()">SAIR</button>
+</div>
 
-  <div id="final">
-    <div style="font-size: 90px;">🤡</div>
-    <h1 style="font-size: 42px; margin-top: 10px;">PEGADINHA!</h1>
-    <h2 style="color:#e50914; margin-bottom: 20px;">1º DE ABRIL</h2>
-    <p style="font-size: 18px; color: #444; font-weight: 500;">Calma, seu dispositivo está seguro! 😂</p>
-    <button style="background:#000; color:#fff; padding: 15px 35px; border:none; border-radius:5px; margin-top:30px; cursor:pointer;" onclick="location.reload()">SAIR</button>
-  </div>
+<script>
 
-  <script>
-    // Som do Grito Agudo
-    const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
+// Áudios (funcionam melhor)
+let boom = new Audio("https://www.myinstants.com/media/sounds/vine-boom.mp3");
+let scream = new Audio("https://www.myinstants.com/media/sounds/movie_1.mp3");
 
-    function iniciarProcesso() {
-      // Libera o som no mobile
-      grito.play().then(() => { grito.pause(); grito.currentTime = 0; }).catch(e => {});
+function start(){
 
-      document.getElementById('main-ui').style.display = 'none';
-      document.getElementById('panic').style.display = 'block';
+  // garante que áudio funcione no mobile
+  boom.play().catch(()=>{});
 
-      let p = 0;
-      let interval = setInterval(() => {
-        p += 1;
-        document.getElementById('perc').innerText = p;
+  document.getElementById("main").style.display="none";
+  document.getElementById("hack").style.display="block";
 
-        if (p >= 100) {
-          clearInterval(interval);
-          setTimeout(dispararScreamer, 400); // Suspense no 100%
-        }
-      }, 120); // Aproximadamente 12 segundos de tensão
+  let logs = [
+    "Conectando ao dispositivo...",
+    "Acessando arquivos...",
+    "Extraindo dados do WhatsApp...",
+    "Enviando para servidor...",
+    "Apagando sistema..."
+  ];
+
+  let i = 0;
+  let logEl = document.getElementById("log");
+
+  let intervalo = setInterval(()=>{
+    logEl.innerHTML += logs[i] + "<br>";
+    i++;
+
+    if(i >= logs.length){
+      clearInterval(intervalo);
+      setTimeout(susto, 1000);
     }
+  },1000);
+}
 
-    function dispararScreamer() {
-      const screamerDiv = document.getElementById('screamer');
-      screamerDiv.style.display = 'block';
-      grito.volume = 1.0;
-      grito.play();
+function susto(){
 
-      if (navigator.vibrate) navigator.vibrate([1000, 500, 1000, 500, 1500]);
+  document.getElementById("hack").style.display="none";
+  document.getElementById("susto").style.display="block";
 
-      setTimeout(() => {
-        screamerDiv.style.display = 'none';
-        document.getElementById('panic').style.display = 'none';
-        document.getElementById('final').style.display = 'flex';
-      }, 4000);
-    }
-  </script>
+  scream.play();
+
+  if(navigator.vibrate){
+    navigator.vibrate([500,200,500,200,800]);
+  }
+
+  setTimeout(()=>{
+    document.getElementById("susto").style.display="none";
+    document.getElementById("final").style.display="flex";
+  },3000);
+}
+
+</script>
+
 </body>
 </html>
