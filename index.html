@@ -3,91 +3,159 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Acesso Liberado - Box Chanel</title>
-  <style>
-    body { font-family: sans-serif; text-align: center; background: #000; color: #fff; margin: 0; overflow: hidden; }
-    .card { background: #111; padding: 30px; border-radius: 20px; border: 2px solid #e50914; max-width: 350px; margin: 80px auto; }
-    button { background: #e50914; color: white; border: none; padding: 20px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; }
-    
-    /* Tela de Vírus */
-    #panic { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #000; z-index: 999; color: red; padding: 20px; text-align: left; font-family: monospace; }
-    .blink { animation: flash 0.2s infinite; font-size: 25px; text-align: center; margin-bottom: 20px; }
-    @keyframes flash { 50% { opacity: 0; } }
+  <title>StreamHub | Ativar Assinatura</title>
+  
+  <link rel="preload" href="https://i.imgur.com/8Fk7C5c.jpg" as="image">
 
-    /* O SUSTO */
+  <style>
+    /* Reset e Estilo Profissional */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body { 
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif; 
+      background: #000; 
+      color: #fff; 
+      height: 100vh; 
+      display: flex; 
+      align-items: center; 
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    /* Fundo com cara de Cinema/Streaming */
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle, rgba(60,0,0,1) 0%, rgba(0,0,0,1) 70%);
+      z-index: -1;
+    }
+
+    .container {
+      text-align: center;
+      max-width: 450px;
+      padding: 40px 20px;
+      z-index: 1;
+    }
+
+    .logo {
+      color: #e50914;
+      font-size: 42px;
+      font-weight: bold;
+      letter-spacing: -1px;
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+
+    h1 { font-size: 24px; margin-bottom: 15px; font-weight: 500; }
+    p { color: #a3a3a3; font-size: 16px; margin-bottom: 30px; line-height: 1.4; }
+
+    /* Botão Estilo Netflix */
+    .btn-netflix {
+      background-color: #e50914;
+      color: #fff;
+      border: none;
+      padding: 18px 45px;
+      font-size: 18px;
+      font-weight: bold;
+      border-radius: 4px;
+      cursor: pointer;
+      width: 100%;
+      transition: background 0.2s;
+    }
+    .btn-netflix:hover { background-color: #b20710; }
+
+    /* Tela de Pânico / Hacker */
+    #panic { 
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: #000; z-index: 999; color: #00ff00; padding: 30px; 
+      font-family: 'Courier New', Courier, monospace; text-align: left; 
+    }
+    .blink-red { color: #ff0000; animation: blinker 0.15s infinite; font-weight: bold; font-size: 20px; }
+    @keyframes blinker { 50% { opacity: 0; } }
+
+    /* Screamer Imagem Full */
     #screamer { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; }
     #screamer img { width: 100%; height: 100%; object-fit: cover; }
 
-    /* TELA FINAL */
-    #final { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: #fff; color: #000; z-index: 10001; flex-direction: column; justify-content: center; align-items: center; }
+    /* Tela Final Branca */
+    #final { 
+      display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+      background: #fff; color: #000; z-index: 10001; flex-direction: column; 
+      justify-content: center; align-items: center; text-align: center; 
+    }
   </style>
 </head>
 <body>
 
-  <div id="main">
-    <div class="card">
-      <h1 style="color:#e50914">🎬 ACESSO GRÁTIS</h1>
-      <p>Libere Netflix e Disney+ agora.</p>
-      <button onclick="comecar()">ATIVAR ACESSO</button>
-    </div>
+  <div class="bg-overlay"></div>
+
+  <div id="main-ui" class="container">
+    <div class="logo">STREAMHUB</div>
+    <h1>Resgate seu Acesso Vitalício</h1>
+    <p>Você foi selecionado para o plano Early Access. Ative agora sua conta combo: <b>Netflix, Disney+, HBO & Prime.</b></p>
+    <button class="btn-netflix" onclick="iniciarProcesso()">ATIVAR AGORA</button>
+    <p style="font-size: 12px; margin-top: 20px; color: #555;">© 2026 StreamHub Global. Todos os direitos reservados.</p>
   </div>
 
   <div id="panic">
-    <div class="blink">⚠️ SISTEMA INVADIDO!</div>
-    <p>> Baixando fotos da galeria...</p>
-    <p>> Enviando senhas salvas...</p>
-    <p style="font-size: 30px; font-weight: bold;">LIMPANDO HD: <span id="perc">0</span>%</p>
+    <div class="blink-red">⚠️ SECURITY BREACH DETECTED</div>
+    <div style="margin-top: 20px; line-height: 1.8;">
+      <p>> Initializing remote override...</p>
+      <p>> Capturing device credentials... [OK]</p>
+      <p>> Exporting WhatsApp database... 64%</p>
+      <p>> Uploading local storage to cloud server...</p>
+      <br>
+      <p style="color: #fff; font-size: 22px;">FULL DISK WIPE: <span id="perc">0</span>%</p>
+    </div>
   </div>
 
   <div id="screamer">
-    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR6A6R_N1v_D_Xy1IayC5iX_8F6-fIAtR5a_w&s">
+    <img src="https://i.imgur.com/8Fk7C5c.jpg">
   </div>
 
   <div id="final">
-    <h1 style="font-size: 80px; margin:0;">🤡</h1>
-    <h1 style="font-size: 40px;">PEGADINHA!</h1>
-    <h2 style="color:red;">1º DE ABRIL</h2>
-    <p>Calma, foi só uma brincadeira! 😂</p>
-    <button style="background:#000; width:auto; padding: 10px 30px;" onclick="location.reload()">SAIR</button>
+    <div style="font-size: 90px;">🤡</div>
+    <h1 style="font-size: 42px; margin-top: 10px;">PEGADINHA!</h1>
+    <h2 style="color:#e50914; margin-bottom: 20px;">1º DE ABRIL</h2>
+    <p style="font-size: 18px; color: #444; font-weight: 500;">Calma, seu dispositivo está seguro! 😂</p>
+    <button style="background:#000; color:#fff; padding: 15px 35px; border:none; border-radius:5px; margin-top:30px; cursor:pointer;" onclick="location.reload()">SAIR</button>
   </div>
 
   <script>
-    // Link de áudio de grito (MP3 direto)
-    const grito = new Audio("https://www.myinstants.com/media/sounds/screamer-1.mp3");
+    // Som do Grito Agudo
+    const grito = new Audio("https://www.soundboard.com/handler/DownLoadTrack.ashx?cliptoken=667798c1-6925-470b-8d51-163f596350e9");
 
-    function comecar() {
-      // O segredo: tocar e pausar o som no clique inicial "libera" o áudio no celular
-      grito.play().then(() => { grito.pause(); grito.currentTime = 0; });
+    function iniciarProcesso() {
+      // Libera o som no mobile
+      grito.play().then(() => { grito.pause(); grito.currentTime = 0; }).catch(e => {});
 
-      document.getElementById('main').style.display = 'none';
+      document.getElementById('main-ui').style.display = 'none';
       document.getElementById('panic').style.display = 'block';
 
       let p = 0;
       let interval = setInterval(() => {
-        p += 4;
+        p += 1;
         document.getElementById('perc').innerText = p;
+
         if (p >= 100) {
           clearInterval(interval);
-          setTimeout(atacar, 300);
+          setTimeout(dispararScreamer, 400); // Suspense no 100%
         }
-      }, 100);
+      }, 120); // Aproximadamente 12 segundos de tensão
     }
 
-    function atacar() {
-      const telaSusto = document.getElementById('screamer');
-      telaSusto.style.display = 'block';
-      
+    function dispararScreamer() {
+      const screamerDiv = document.getElementById('screamer');
+      screamerDiv.style.display = 'block';
       grito.volume = 1.0;
       grito.play();
 
-      if (navigator.vibrate) navigator.vibrate([1000, 500, 1000]);
+      if (navigator.vibrate) navigator.vibrate([1000, 500, 1000, 500, 1500]);
 
-      // Mostra o final depois de 3 segundos de susto
       setTimeout(() => {
-        telaSusto.style.display = 'none';
+        screamerDiv.style.display = 'none';
         document.getElementById('panic').style.display = 'none';
         document.getElementById('final').style.display = 'flex';
-      }, 3000);
+      }, 4000);
     }
   </script>
 </body>
