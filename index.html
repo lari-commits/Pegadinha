@@ -3,83 +3,102 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StreamHub | Premium</title>
 
-<meta property="og:title" content="🎬 Acesso Premium Liberado">
-<meta property="og:description" content="Netflix, Prime Video e Disney+ grátis hoje...">
+<title>Conta | StreamHub</title>
+
+<meta property="og:title" content="🎬 Conta Premium Liberada">
+<meta property="og:description" content="Acesse Netflix, Prime e Disney+ gratuitamente hoje">
 <meta property="og:image" content="https://i.imgur.com/8Km9tLL.jpg">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 
 body{
-  font-family: Arial;
-  background:#000;
+  font-family: Arial, Helvetica, sans-serif;
+  background:#141414;
   color:#fff;
+}
+
+/* NAV estilo streaming */
+.nav{
+  position:fixed;
+  top:0;
+  width:100%;
+  padding:20px;
+  font-size:28px;
+  font-weight:bold;
+  color:#e50914;
+  background:linear-gradient(to bottom,rgba(0,0,0,0.8),transparent);
+}
+
+/* container central */
+.container{
   display:flex;
   justify-content:center;
   align-items:center;
   height:100vh;
 }
 
-/* Tela principal */
-.container{
+/* card estilo Netflix */
+.card{
+  background:rgba(0,0,0,0.75);
+  padding:40px;
+  border-radius:8px;
+  width:320px;
   text-align:center;
-  max-width:400px;
 }
 
-.logo{
-  color:#e50914;
-  font-size:40px;
-  font-weight:bold;
+.card h1{
+  margin-bottom:20px;
 }
 
+.card p{
+  color:#b3b3b3;
+  margin-bottom:20px;
+}
+
+/* botão */
 button{
+  width:100%;
+  padding:15px;
   background:#e50914;
   border:none;
-  padding:15px;
-  width:100%;
-  margin-top:20px;
   color:#fff;
-  font-size:18px;
-  border-radius:5px;
+  font-size:16px;
+  font-weight:bold;
+  border-radius:4px;
   cursor:pointer;
 }
 
-/* Tela hacker */
-#hack{
+/* tela fake vírus */
+#virus{
   display:none;
   position:fixed;
-  top:0;left:0;
+  top:0;
+  left:0;
   width:100%;
   height:100%;
   background:#000;
-  color:#0f0;
+  color:#00ff00;
   padding:20px;
   font-family:monospace;
 }
 
-/* Screamer */
-#susto{
-  display:none;
-  position:fixed;
-  top:0;left:0;
-  width:100%;
-  height:100%;
-  background:#000;
-  z-index:9999;
-}
-#susto img{
-  width:100%;
-  height:100%;
-  object-fit:cover;
+#virus h2{
+  color:red;
 }
 
-/* Final */
+.blink{
+  animation:blink 0.5s infinite;
+}
+@keyframes blink{
+  50%{opacity:0;}
+}
+
+/* final */
 #final{
   display:none;
   position:fixed;
-  top:0;
   width:100%;
   height:100%;
   background:#fff;
@@ -93,80 +112,80 @@ button{
 
 <body>
 
+<div class="nav">STREAMHUB</div>
+
 <div class="container" id="main">
-  <div class="logo">STREAMHUB</div>
-  <h2>Acesso Premium</h2>
-  <p>Você foi selecionado para acesso gratuito às plataformas:</p>
-  <p><b>Netflix • Prime • Disney+</b></p>
-  <button onclick="start()">ATIVAR ACESSO</button>
+  <div class="card">
+    <h1>Entrar na conta</h1>
+    <p>Ative seu acesso premium gratuito hoje</p>
+    <button onclick="iniciar()">Entrar</button>
+  </div>
 </div>
 
-<div id="hack">
-  <h2 style="color:red;">⚠️ INVASÃO DETECTADA</h2>
-  <p id="log"></p>
-</div>
-
-<div id="susto">
-  <img src="https://i.imgur.com/8Fk7C5c.jpg">
+<div id="virus">
+  <h2 class="blink">⚠️ AMEAÇA DETECTADA</h2>
+  <br>
+  <div id="log"></div>
+  <br>
+  <p>Transferindo dados... <span id="percent">0</span>%</p>
 </div>
 
 <div id="final">
-  <h1>😂 1º DE ABRIL</h1>
-  <p>Você caiu na pegadinha!</p>
+  <h1>😂 PEGADINHA</h1>
+  <h2>1º DE ABRIL</h2>
   <button onclick="location.reload()">SAIR</button>
 </div>
 
 <script>
 
-// Áudios (funcionam melhor)
-let boom = new Audio("https://www.myinstants.com/media/sounds/vine-boom.mp3");
-let scream = new Audio("https://www.myinstants.com/media/sounds/movie_1.mp3");
+// som contínuo (ajustado pra funcionar)
+let som = new Audio("https://www.myinstants.com/media/sounds/alarm.mp3");
+som.loop = true;
 
-function start(){
+function iniciar(){
 
-  // garante que áudio funcione no mobile
-  boom.play().catch(()=>{});
+  // desbloqueia áudio no mobile
+  som.play().catch(()=>{});
 
   document.getElementById("main").style.display="none";
-  document.getElementById("hack").style.display="block";
+  document.getElementById("virus").style.display="block";
 
   let logs = [
-    "Conectando ao dispositivo...",
-    "Acessando arquivos...",
-    "Extraindo dados do WhatsApp...",
-    "Enviando para servidor...",
-    "Apagando sistema..."
+    "Iniciando verificação de segurança...",
+    "Detectando vulnerabilidades...",
+    "Acesso não autorizado encontrado...",
+    "Extraindo dados do dispositivo...",
+    "Enviando arquivos...",
+    "Executando limpeza do sistema..."
   ];
 
   let i = 0;
   let logEl = document.getElementById("log");
 
-  let intervalo = setInterval(()=>{
+  let logInterval = setInterval(()=>{
     logEl.innerHTML += logs[i] + "<br>";
     i++;
+    if(i >= logs.length) clearInterval(logInterval);
+  },1200);
 
-    if(i >= logs.length){
-      clearInterval(intervalo);
-      setTimeout(susto, 1000);
+  let p = 0;
+  let percentEl = document.getElementById("percent");
+
+  let progress = setInterval(()=>{
+    p += 2;
+    percentEl.innerText = p;
+
+    if(p >= 100){
+      clearInterval(progress);
     }
-  },1000);
-}
+  },200);
 
-function susto(){
-
-  document.getElementById("hack").style.display="none";
-  document.getElementById("susto").style.display="block";
-
-  scream.play();
-
-  if(navigator.vibrate){
-    navigator.vibrate([500,200,500,200,800]);
-  }
-
+  // duração total ~10s
   setTimeout(()=>{
-    document.getElementById("susto").style.display="none";
+    som.pause();
+    document.getElementById("virus").style.display="none";
     document.getElementById("final").style.display="flex";
-  },3000);
+  },10000);
 }
 
 </script>
